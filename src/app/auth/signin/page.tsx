@@ -32,33 +32,17 @@ export default function SingUpPage() {
       </div>
       <div className="w-1/2 h-screen flex flex-wrap place-content-center main-board">
         <div className="text-white max-w-[500px]">
-          <div className="text-center text-[48px] font-bold">Sign up for an account</div>
+          <div className="text-center text-[48px] font-bold">Sign in for an account</div>
           <div className="text-[18px] text-center">Send, spend and save smarter</div>
           <form
             className="mt-3"
             onSubmit={e => e.preventDefault()}
             noValidate
           >
-            <div className="flex gap-x-2">
-              <input
-                value={firstname}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="First Name"
-                className="common-input w-1/2 my-4"
-                type="text"
-              />
-              <input
-                value={lastname}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="Last Name"
-                className="common-input w-1/2 my-4"
-                type="text"
-              />
-            </div>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="Username or Email"
               className="common-input w-full my-4"
               type="email"
             />
@@ -77,14 +61,14 @@ export default function SingUpPage() {
               onClick={onSubmit}
               className="common-btn w-full my-4 py-[12px] btn-animation"
             >
-              Sign Up
+              Sign In
             </button>
             <div className='w-full text-[14px] text-center text-white mt-[70px]'>
-              <span>Already have an account?</span>
+              <span>Don't have an account yet?</span>
               <Link
-                href="/auth/signin"
+                href="/auth/signup"
                 className='cursor-pointer ml-[5px]'
-              >Sign In</Link>
+              >Sign Up</Link>
             </div>
           </form>
         </div>
