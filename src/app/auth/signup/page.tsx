@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { useSignup } from "@/hooks/auth/useSignup";
 
 export default function SingUpPage() {
 
@@ -11,17 +12,18 @@ export default function SingUpPage() {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const { signup } = useSignup();
   const router = useRouter();
 
   const onSubmit = () => {
     if (!firstname || !email || !password || !lastname) {
       alert("Please enter information");
-    // } else {
-    //   signup(firstname, lastname, email, password)
-    //     .then((res) => {
-    //       router.push("/auth/signin");
-    //     })
-    //     .catch((err) => console.log(err));
+    } else {
+      signup(firstname, lastname, email, password)
+        .then((res) => {
+          router.push("/auth/signin");
+        })
+        .catch((err) => console.log(err));
     }
   }
 

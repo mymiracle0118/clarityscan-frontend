@@ -1,29 +1,46 @@
 "use client";
 
-import { useState } from "react"
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { useLogin } from "@/hooks/auth/useLogin";
+import { useCallback } from "react";
+import { Checkbox } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
 
-export default function SingUpPage() {
-
+export default function SignInPage() {
   const [email, setEmail] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useLogin();
   const router = useRouter();
+  const [provider, setProvider] = useState('');
+  const [profile, setProfile] = useState<any>();
+
+  const onLoginStart = useCallback(() => {
+    alert('login start');
+  }, []);
+
+  const onLogoutSuccess = useCallback(() => {
+    setProfile(null);
+    setProvider('');
+    alert('logout success');
+  }, []);
+
+  const onLogout = useCallback(() => {}, []);
 
   const onSubmit = () => {
-    if (!firstname || !email || !password || !lastname) {
+    if (!email || !password) {
       alert("Please enter information");
-    // } else {
-    //   signup(firstname, lastname, email, password)
-    //     .then((res) => {
-    //       router.push("/auth/signin");
-    //     })
-    //     .catch((err) => console.log(err));
+    } else {
+      login(email, password)
+        .then((res) => {
+          console.log(res);
+          // router.push("/profile");
+        })
+        .catch((e) => alert(e));
     }
-  }
+  };
 
   return (
     <div className="signup flex w-screen h-screen">
