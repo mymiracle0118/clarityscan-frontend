@@ -1,18 +1,17 @@
-"use client";
-
 import { useState } from "react"
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
+import {Navigate} from "react-router"
 import { useSignup } from "../hooks/auth/useSignup";
+import '../assets/sass/globals.scss'
 
-
-export default function SigninPage() {
+export default function Singin() {
 
   const [email, setEmail] = useState("");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const { signup } = useSignup();
-//   const router = useRouter();
+  // const navigate = Navigate();
 
   const onSubmit = () => {
     if (!firstname || !email || !password || !lastname) {
@@ -20,7 +19,7 @@ export default function SigninPage() {
     } else {
       signup(firstname, lastname, email, password)
         .then((res) => {
-        //   router.push("/auth/signin");
+          // navigate("/auth/signin");
         })
         .catch((err) => console.log(err));
     }
@@ -67,7 +66,7 @@ export default function SigninPage() {
             <div className='w-full text-[14px] text-center text-white mt-[70px]'>
               <span>Don't have an account yet?</span>
               <Link
-                href="/auth/signup"
+                to="/auth/signup"
                 className='cursor-pointer ml-[5px]'
               >Sign Up</Link>
             </div>

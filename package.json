@@ -2,10 +2,7 @@
   "name": "business-website-template",
   "private": true,
   "version": "1.0.0",
-  "type": "commonjs",
-  "esModule": false,
-  "allowJs": true,
-  "resolveJsonModule": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
