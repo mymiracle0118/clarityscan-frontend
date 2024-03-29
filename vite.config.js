@@ -29,7 +29,8 @@ export default defineConfig({
     }
   },
   build: {
-    commonjsOptions: { transformMixedEsModules: true } // Change
+    commonjsOptions: { transformMixedEsModules: true }, // Change
+    chunkSizeWarningLimit: 800, // Set the limit to 800kb
   },
   optimizeDeps:{
     esbuildOptions:{  
