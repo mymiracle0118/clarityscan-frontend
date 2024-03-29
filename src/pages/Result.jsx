@@ -9,7 +9,7 @@ import "@/assets/sass/globals.scss";
 export default function Result() {
   return (
     <div className="relative bg-[#0F002E]">
-      {/* <Sidebar />
+      <Sidebar />
       <div className="ml-28 p-16">
         <div className="flex mb-6 gap-x-20">
           <StatisticPanel />
@@ -19,8 +19,7 @@ export default function Result() {
           <PremiumPanel />
           <SourcePanel />
         </div>
-      </div> */}
-      <h1>Test</h1>
+      </div>
     </div>
   );
 }
