@@ -1,8 +1,10 @@
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import {Navigate} from "react-router"
-import { useSignup } from "../hooks/auth/useSignup";
-import '../assets/sass/globals.scss'
+
+import '@/assets/sass/globals.scss'
+
+import { useSignup } from "@/hooks/auth/useSignup";
 
 export default function Singin() {
 

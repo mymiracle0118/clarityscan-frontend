@@ -1,6 +1,5 @@
-import styles from "../../style";
-import { discount, robot } from "../../assets/images";
-import GetStarted from "./GetStarted";
+import styles from "@/constants/style";
+import { robot, } from "@/assets"
 
 const Hero = () => {
   return (
@@ -28,7 +27,6 @@ const Hero = () => {
         </p>
       </div>
       <div className="flex items-center">
-        <GetStarted />
       </div>
       <div className={`flex-1 flex md:my-0 my-10 relative justify-end`}>
         <img src={robot} alt="billing" className="w-[80%] relative z-[5]" />
@@ -37,7 +35,6 @@ const Hero = () => {
         <div className="absolute z-[0] w-[50%] h-[50%] right-20 bottom-20 blue__gradient" />
       </div>
       <div className={`ss:hidden ${styles.flexCenter}`}>
-        <GetStarted />
       </div>
     </section>
   );

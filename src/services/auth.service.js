@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getAuthorizationHeader } from "../utils/getAuthorizationHeader";
+
+import { getAuthorizationHeader } from "@/utils/getAuthorizationHeader";
 
 export class AuthService {
   constructor(url) {

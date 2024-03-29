@@ -1,3 +1,3 @@
-import { AuthService } from "./auth.service";
+import { AuthService } from "@/services/auth.service";
 
-export const authService = new AuthService("//localhost:8888");
+export const authService = new AuthService("process.env.REACT_APP_SERVER_URL");

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { close, logo, menu } from "../../../assets/images";
-import { navLinks } from "../../../constants";
 import { Link } from "react-router-dom";
+
+import { navLinks } from "@/constants";
+import { logo, menu } from '@/assets'
+
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -19,7 +21,7 @@ const Navbar = () => {
               i === navLinks.length - 1 ? "mr-0" : "mr-10"
             } text-white mr-10`}
           >
-            <a href={`#${nav.id}`}>{nav.title}</a>
+            <a href={`${nav.id}`}>{nav.title}</a>
           </li>
         ))}
       </ul>

@@ -57,3 +57,15 @@
     }
   }
 }
+
+.sourcepanelbg {
+  .sourcepanellink {
+    display: none;
+  }
+
+  &:hover {
+    .sourcepanellink {
+      display: block;
+    }
+  }
+}

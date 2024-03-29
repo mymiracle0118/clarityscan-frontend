@@ -1,17 +1,9 @@
 import React from 'react'
-import { 
-  Billing, 
-  Business, 
-  CardDeal, 
-  Clients, 
-  CTA, 
-  Footer, 
-  Hero, 
-  Stats, 
-  Testimonials 
-} from '../components/home'
-import Navbar from '../components/layouts/Header/Navbar'
-import styles from '../style'
+
+import Hero from '@/components/home/Hero'
+import Navbar from '@/components/layouts/Header/Navbar'
+import Footer from "@/components/layouts/Footer/Footer"
+import styles from '@/constants/style'
 
 const App = () => {
   return (
@@ -28,10 +20,10 @@ const App = () => {
       </div>
       <div className={`bg-primary ${styles.paddingX} ${styles.flexStart}`}>
         <div className={`${styles.boxWidth}`}>
-          <Stats/>
-          <Footer/>     
+        <Footer />
         </div>
       </div>
+
     </div>
   )
 }

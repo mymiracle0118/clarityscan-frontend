@@ -4,3 +4,7 @@ body {
   box-sizing: border-box;
   font-family: 'Source Sans Pro' !important;
 }
+
+.radialbg {
+  background-image: radial-gradient(circle, #502685 50%, #242171);
+}
