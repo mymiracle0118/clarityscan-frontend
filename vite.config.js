@@ -2,17 +2,19 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import imp from 'vite-plugin-imp';
 import { fileURLToPath, URL } from "url";
-
+import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
+import reactRefresh from '@vitejs/plugin-react-refresh'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    reactRefresh(),
     imp({
       libList: ['axios'],
     })
   ],
   
-  // resolve: {
+  // resolve: {import { esbuildCommonjs } from '@originjs/vite-plugin-commonjs'
   //   alias: [
   //     { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
   //     { find: '@assets', replacement: fileURLToPath(new URL('./src/shared/assets', import.meta.url)) },
@@ -25,5 +27,16 @@ export default defineConfig({
     alias: {
      "@": __dirname + "/src",
     }
+  },
+  build: {
+    commonjsOptions: { transformMixedEsModules: true } // Change
+  },
+  optimizeDeps:{
+    esbuildOptions:{  
+      plugins:[
+        esbuildCommonjs(['@canvasjs/react-charts', '@canvasjs/charts'])
+      ]
+    }
   }
+
 })

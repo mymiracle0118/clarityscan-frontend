@@ -1,6 +1,6 @@
 
 // Image
-import menu from "@/assets/images/home/menu.svg"
+import menu from "@/assets/images/Home/menu.svg"
 import robot from "@/assets/images/home/robot.png";
 
 import money from "@/assets/images/result/money.png"
