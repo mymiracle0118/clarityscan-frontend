@@ -1,6 +1,6 @@
 
 // Image
-import menu from "@/assets/images/home/menu.svg"
+import menu from "@/assets/images/Home/menu.svg"
 import robot from "@/assets/images/home/robot.png";
 
 import money from "@/assets/images/result/money.png"
@@ -18,6 +18,7 @@ import bg_signup from "@/assets/images/auth/bg-signup.jpeg"
 import logo from "@/assets/images/common/logo.svg"
 import user from "@/assets/images/common/user.svg"
 import home from "@/assets/images/common/home.svg"
+import close from "@/assets/images/common/close.svg"
 
 // Icon
 import upgrade from "@/assets/icons/upgrade.svg"
@@ -47,4 +48,5 @@ export {
   logo,
   user,
   home,
+  close,
 };

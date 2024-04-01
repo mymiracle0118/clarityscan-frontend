@@ -15,9 +15,9 @@ const PieChart = ({ data }) => {
     data: [
       {
         type: "doughnut",
-        startAngle: 75,
+        startAngle: 260,
         toolTipContent: "<b>{label}</b>: {y}%",
-        innerRadius: 60,
+        innerRadius: 65,
         legendText: "{label}",
         indexLabelFontSize: 16,
         indexLabelFontColor: "#fff",
@@ -35,7 +35,7 @@ const PieChart = ({ data }) => {
   return (
     <>
       <style>{cssStyles}</style>{" "}
-      <div style={{ display: "contents" }}>
+      <div style={{ display: "contents" }} className="">
         <CanvasJSChart options={options} />
       </div>
     </>
