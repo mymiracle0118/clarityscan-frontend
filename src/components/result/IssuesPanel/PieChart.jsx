@@ -15,17 +15,31 @@ const PieChart = ({ data }) => {
     data: [
       {
         type: "doughnut",
-        startAngle: 260,
+        startAngle: 160,
         toolTipContent: "<b>{label}</b>: {y}%",
-        innerRadius: 65,
+        innerRadius: 80,
+        indexLabelPlacement: "outside",
         legendText: "{label}",
+        indexLabelLineThickness: 0,
+        bevelEnabled: true,
+        showInLegend: false,
+        indexLabelWrap: true,
+        indexLabelMaxWidth: 200,
         indexLabelFontSize: 16,
         indexLabelFontColor: "#fff",
-        indexLabel: "{label} - {y}%",
+        indexLabel: "{label}-{y}%",
         labelFontColor: "#fff",
         dataPoints: data,
       },
     ],
+    legend: {
+      display: false,
+    },
+    options: {
+      plugins: {
+        datalabels: false, // Removing this line shows the datalabels again
+      },
+    },
   };
   const cssStyles = `
   .canvasjs-chart-toolbar {
