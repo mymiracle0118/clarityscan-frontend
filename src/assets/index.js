@@ -1,9 +1,8 @@
 
 // Image
-import menu from "@/assets/images/home/menu.svg"
+import menu from "@/assets/images/Home/menu.svg"
 import robot from "@/assets/images/home/robot.png";
 
-import money from "@/assets/images/result/money.png"
 import lightning from "@/assets/images/result/lightning.svg"
 import code from "@/assets/images/result/code.png"
 import premiumPanelbg from "@/assets/images/result/bg1.png"
@@ -19,6 +18,14 @@ import logo from "@/assets/images/common/logo.svg"
 import user from "@/assets/images/common/user.svg"
 import home from "@/assets/images/common/home.svg"
 import close from "@/assets/images/common/close.svg"
+import STX from "@/assets/images/common/STX.png"
+import BTC from "@/assets/images/common/BTC.svg"
+import NFT from "@/assets/images/common/NFT.png"
+
+//Profile
+import history from "@/assets/images/profile/history.png"
+import history1 from "@/assets/images/profile/history(white).svg"
+import config from "@/assets/images/profile/config.svg"
 
 // Icon
 import upgrade from "@/assets/icons/upgrade.svg"
@@ -29,8 +36,7 @@ export {
 
   // image-home
   robot,
-  money,
-
+  
   // image-result
   lightning,
   code,
@@ -39,14 +45,22 @@ export {
   shield,
   crown2,
   codesample,
-
+  
   // auth
   bg_welcome,
   bg_signup,
-
+  
   // common
   logo,
   user,
   home,
   close,
+  STX,
+  BTC,
+  NFT,
+
+  //profile
+  history,
+  history1,
+  config,
 };

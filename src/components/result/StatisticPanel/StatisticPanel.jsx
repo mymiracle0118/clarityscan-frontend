@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { money, lightning, code, shield } from "@/assets";
+import { STX, lightning, code, shield } from "@/assets";
 import LaunchOutlinedIcon from "@mui/icons-material/LaunchOutlined";
 import HalfCircle from "./HalfCircle";
 import { Box } from "@mui/material";
@@ -7,37 +7,37 @@ import { Box } from "@mui/material";
 const StatisticPanel = () => {
   return (
     <div className=" border-white border-4 rounded-[40px] px-2 md:px-6 2xl:px-8 pt-6 pb-4 md:pt-10 md:pb-6 radialbg md:w-full 2xl:max-w-[600px] mb-4 sm:mb-7 xl:mb-0 ">
-      <div className="text-white flex gap-x-1 2xl:gap-x-4 mb-6 items-center">
-        <img src={money} alt="" className="w-8 md:w-12 lg:w-14 2xl:w-16 h-8 md:h-12 lg:h-14 2xl:h-16" />
+      <div className="text-white flex gap-x-1 xs:gap-x-3 2xl:gap-x-4 mb-6 items-center ss:pl-2 md:pl-0">
+        <img src={STX} alt="" className="w-8 xs:w-10 ss:w-12 lg:w-14 2xl:w-16 h-8 xs:h-10 ss:h-12 lg:h-14 2xl:h-16" />
         <div className="flex flex-col gap-y-[0px]">
-          <div className="text-sm md:text-xl lg:text-2xl xl:text-[0.9rem] 2xl:text-xl font-bold">
+          <div className="text-[0.7rem] xs:text-[0.8rem] ss:text-sm md:text-xl lg:text-2xl xl:text-[0.9rem] 2xl:text-xl font-bold">
             SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ
           </div>
           <div className="flex text-sm md:text-lg">
-            <p className="px-2 md:px-4 border-r-1 border-black block text-sm md:text-lg xl:text-sm 2xl:text-md">
+            <p className="px-2 md:px-4 border-r-1 border-black block text-xs ss:text-sm md:text-lg xl:text-sm 2xl:text-md">
               Stacks (STX)
             </p>
             <span>|</span>
-            <Link className="px-2 md:px-4 text-sm md:text-lg xl:text-sm 2xl:text-md">
+            <Link className="px-2 md:px-4 text-xs ss:text-sm md:text-lg xl:text-sm 2xl:text-md">
               View on Stacks Explorer  <LaunchOutlinedIcon sx={{ fontSize:'15px'}} />
             </Link>
           </div>
         </div>
       </div>
-      <div className="bg-white px-4 py-6 rounded-[40px] mb-6">
+      <div className="bg-white px-2 ss:md-4 py-6 rounded-[40px] mb-6">
         <div className="flex justify-between gap-x-2 md:gap-x-6 text-white mb-6">
           <div className="radialbg flex justify-center items-center gap-x-2 md:gap-x-4 px-3 md:px-4 2xl:px-8 h-16 py-1 rounded-full w-1/2">
             <img src={lightning} alt="" className="w-3 md:w-4 2xl:w-6" />
             <div>
-              <p className="text-sm 2xl:text-xl">Scan Duration</p>
-              <p className="text-center text-md 2xl:text-2xl font-bold">2 Secs</p>
+              <p className="text-xs ss:text-sm 2xl:text-xl">Scan Duration</p>
+              <p className="text-center text-sm ss:text-md 2xl:text-2xl font-bold">2 Secs</p>
             </div>
           </div>
           <div className="radialbg flex justify-center items-center gap-x-2 md:gap-x-4 px-3 md:px-4 2xl:px-8 h-16 py-1 rounded-full w-1/2">
             <img src={code} alt="" className="w-5 md:w-6 2xl:w-11" />
             <div>
-              <p className="text-sm 2xl:text-xl">Lines of Code</p>
-              <p className="text-center text-md 2xl:text-2xl font-bold">4000</p>
+              <p className="text-xs ss:text-sm 2xl:text-xl">Lines of Code</p>
+              <p className="text-center text-sm ss:text-md 2xl:text-2xl font-bold">4000</p>
             </div>
           </div>
         </div>

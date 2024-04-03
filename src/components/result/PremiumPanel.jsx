@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { money, lightning, code, shield } from "@/assets";
 
 const PremiumPanel = () => {
   return (

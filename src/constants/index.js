@@ -19,6 +19,10 @@ export const navLinks = [
     id: "#Contact",
     title: "Contact",
   },
+  {
+    id: "profile",
+    title: "Profile",
+  },
 ];
 
 export const footerLinks = [
