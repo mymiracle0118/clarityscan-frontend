@@ -1,4 +1,4 @@
-import Sidebar from "@/components/layouts/Sidebar/Sidebar";
+import Sidebar from "@/components/layouts/Sidebar/sidebar";
 import PremiumPanel from "@/components/result/PremiumPanel";
 import SourcePanel from "@/components/result/SourcePanel";
 import { StatisticPanel } from "@/components/result/StatisticPanel";
