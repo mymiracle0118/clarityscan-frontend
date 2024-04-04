@@ -10,8 +10,10 @@ import shield from "@/assets/images/result/private.svg"
 import crown2 from "@/assets/images/result/crown2.svg"
 import codesample from "@/assets/images/result/codesample.png"
 
+//Auth
 import bg_welcome from "@/assets/images/auth/bg_welcome.jpeg"
 import bg_signup from "@/assets/images/auth/bg-signup.jpeg"
+import cross from "@/assets/images/auth/cross.svg"
 
 // Common
 import logo from "@/assets/images/common/logo.svg"
@@ -49,6 +51,7 @@ export {
   // auth
   bg_welcome,
   bg_signup,
+  cross,
   
   // common
   logo,

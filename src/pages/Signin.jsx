@@ -1,80 +1,135 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import {Navigate} from "react-router"
-
-import '@/assets/sass/globals.scss'
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/layouts/Header/Navbar";
+import "@/assets/sass/globals.scss";
 import { useSignup } from "@/hooks/auth/useSignup";
+import { cross } from "@/assets/"; // Import your other assets here
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 export default function Singin() {
-
   const [email, setEmail] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
+  const [errors, setErrors] = useState({}); // State to track input errors
+  const [agreed, setAgreed] = useState(false); // State to track checkbox status
+  const [passwordFocused, setPasswordFocused] = useState(false); // State to track password input focus
   const { signup } = useSignup();
   // const navigate = Navigate();
 
+  const validateInputs = () => {
+    const errors = {};
+    if (!email) {
+      errors.email = "Email is required";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0 && agreed; // Return true if no errors and checkbox is checked
+  };
+
   const onSubmit = () => {
-    if (!firstname || !email || !password || !lastname) {
-      alert("Please enter information");
-    } else {
+    const isValid = validateInputs();
+    if (isValid) {
       signup(firstname, lastname, email, password)
         .then((res) => {
-          // navigate("/auth/signin");
+          // navigate("/signin");
         })
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   return (
-    <div className="signup flex w-screen h-screen">
-      <div className="w-1/2 h-screen img-panel">
-
-      </div>
-      <div className="w-1/2 h-screen flex flex-wrap place-content-center main-board">
-        <div className="text-white max-w-[500px]">
-          <div className="text-center text-[48px] font-bold">Sign in for an account</div>
-          <div className="text-[18px] text-center">Send, spend and save smarter</div>
+    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.jpeg')] relative min-h-screen">
+      <Navbar />
+      <Link to="/" className="absolute right-10 mt-10 sm:mt-0">
+        <img src={cross} alt="" className="w-8 xs:w-10" />
+      </Link>
+      <div className="px-3 py-6 xs:p-6">
+        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-6 xs:p-10 bg-[#04091E] m-auto lg:absolute right-1/4 top-[23%]">
+          <div className="text-center text-3xl xs:text-4xl font-bold px-2 ss:px-0">
+            Sign in for an account
+          </div>
+          <div className="text-[18px] text-center">
+            Send, spend and save smarter
+          </div>
           <form
             className="mt-3"
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
             noValidate
           >
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Username or Email"
-              className="common-input w-full my-4"
+              className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
+                errors.email ? "border-red-500" : ""
+              }`}
               type="email"
             />
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="common-input w-full my-4"
-              type="password"
-            />
+            {errors.email && (
+              <p className="text-red-500 text-xs">{errors.email}</p>
+            )}
+            <div className="relative">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onFocus={() => setPasswordFocused(true)}
+                onBlur={() => setPasswordFocused(false)}
+                placeholder="Password"
+                className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
+                  errors.password ? "border-red-500" : ""
+                } ${passwordFocused ? "bg-white" : ""}`}
+                type={showPassword ? "text" : "password"} // Conditionally set type based on showPassword state
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state
+                className="absolute inset-y-0 right-0 flex items-center justify-center mr-2 text-gray-400"
+              >
+                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-xs">{errors.password}</p>
+            )}
             <div className="flex gap-x-3 items-center justify-center">
-              <input type="checkbox" name="" id="" />
-              <label htmlFor="checkbox-label" className="checkbox-label">By creating an account, you agreeing to our Privacy Policy, and Electronics Communication Policy.</label>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                onChange={(e) => setAgreed(e.target.checked)}
+              />
+              <label
+                htmlFor="checkbox-label"
+                className="checkbox-label text-xs xs:text-sm"
+              >
+                By creating an account, you agreeing to our Privacy Policy, and
+                Electronics Communication Policy.
+              </label>
             </div>
             <button
               onClick={onSubmit}
-              className="common-btn w-full my-4 py-[12px] btn-animation"
+              className={`common-btn w-full my-4 py-[12px] btn-animation ${
+                !agreed ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={!agreed} // Disable the button if the checkbox is not checked
             >
               Sign In
             </button>
-            <div className='w-full text-[14px] text-center text-white mt-[70px]'>
+            <div className="w-full text-[14px] text-center text-gray-400 mt-[40px]">
               <span>Don't have an account yet?</span>
               <Link
-                to="/auth/signup"
-                className='cursor-pointer ml-[5px]'
-              >Sign Up</Link>
+                to="/signup"
+                className="cursor-pointer ml-[5px] text-white underline"
+              >
+                Sign Up
+              </Link>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }

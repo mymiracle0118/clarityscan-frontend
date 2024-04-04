@@ -11,8 +11,8 @@ export const AppRouter = () => {
         <BrowserRouter> 
             <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/auth/signin" element={<SigninPage />} />
-                <Route path="/auth/signup" element={<SignupPage />} />
+                <Route path="/signin" element={<SigninPage />} />
+                <Route path="/signup" element={<SignupPage />} />
                 <Route path="/result" element={<ResultPage />} />
                 <Route path="/profile" element={<AuditHistory />} />
             </Routes>

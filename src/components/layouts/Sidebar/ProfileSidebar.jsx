@@ -78,9 +78,9 @@ const ProfileSidebar = () => {
           ref={sidebarRef}
           className={`${
             toggle ? "flex" : "hidden"
-          } p-6 bg-black-gradient absolute top-0 left-0 z-20 min-w-[140px] sidebar flex flex-col justify-between items-center h-screen`}
+          } p-2 ss:p-6 bg-black-gradient absolute top-0 left-0 z-20 min-w-[140px] sidebar flex flex-col justify-between items-center h-screen`}
         >
-          <ul className="list-none flex flex-col justify-between items-center flex-1">
+          <ul className="list-none flex flex-col justify-between items-center gap-y-3 flex-1">
             <Link to="/" className="mt-3">
               <img
                 src={user}
@@ -91,27 +91,27 @@ const ProfileSidebar = () => {
             <div>
               <Link to="/">
                 <div className="hover:bg-[#41424D] md:w-44 lg:w-52 py-1">
-                  <img src={home} alt="" className="w-12 m-auto" />
+                  <img src={home} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
               <Link to="/" className="mt-4">
-                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
-                  <img src={user} alt="" className="w-12 m-auto" />
+                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                  <img src={user} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
               <Link to="/" className="mt-4">
-                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
-                  <img src={history1} alt="" className="w-12 m-auto" />
+                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                  <img src={history1} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
               <Link to="/" className="mt-4">
-                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
-                  <img src={config} alt="" className="w-12 m-auto" />
+                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                  <img src={config} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
             </div>
-            <Link to="/" className="mb-10">
-              <img src={logo} alt="" className="md:w-20 lg:w-24" />
+            <Link to="/" className="mb-2 ss:mb-10">
+              <img src={logo} alt="" className="w-16 ss:w-20 lg:w-24" />
             </Link>
           </ul>
         </div>
