@@ -1,39 +1,158 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+
 import ProfileSidebar from "@/components/layouts/Sidebar/ProfileSidebar";
-import { facebook, twitter, instagram, linkdin } from "@/assets";
-import UserinfoHeader from "@/components/profile/userinfo/UserinfoHeader";
-import UserinfoEditPanel from "@/components/profile/userinfo/UserinfoEditPanel";
+import UserInfo from "./profile/UserInfo";
+import AuditHistory from "./profile/AuditHistory";
+
+import { BTC, STX, NFT } from "@/assets";
+import { useState } from "react";
+
+const hitoryValues = [
+  {
+    chainImg: STX,
+    chain: "STX",
+    contractName: "Stacks(STX)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#7ED957",
+    percentage: "66",
+  },
+  {
+    chainImg: NFT,
+    chain: "NFT",
+    contractName: "Megapont Ape #444 (NFT)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#FF5757",
+    percentage: "26",
+  },
+  {
+    chainImg: BTC,
+    chain: "BTC",
+    contractName: "Bitcoin (BTC)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#FFBD59",
+    percentage: "91",
+  },
+  {
+    chainImg: STX,
+    chain: "STX",
+    contractName: "Stacks(STX)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#8C52FF",
+    percentage: "50",
+  },
+  {
+    chainImg: STX,
+    chain: "STX",
+    contractName: "Stacks(STX)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#7ED957",
+    percentage: "66",
+  },
+  {
+    chainImg: NFT,
+    chain: "NFT",
+    contractName: "Megapont Ape #444 (NFT)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#FF5757",
+    percentage: "26",
+  },
+  {
+    chainImg: BTC,
+    chain: "BTC",
+    contractName: "Bitcoin (BTC)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#FFBD59",
+    percentage: "91",
+  },
+  {
+    chainImg: STX,
+    chain: "STX",
+    contractName: "Stacks(STX)",
+    contractID: "SP9DB612KK4J38TW6SY9296JKCSZ2ETMXX585KJZ",
+    issue: [
+      { Critical: 60 },
+      { High: 36 },
+      { Medium: 94 },
+      { Low: 65 },
+      { Informational: 20 },
+      { Gas: 40 },
+    ],
+    style: "#8C52FF",
+    percentage: "50",
+  },
+];
 
 export default function Profile() {
+  const [path, selectPath] = useState("userinfo");
+  const selectPage = (path) => {
+    console.log(path);
+    selectPath(path);
+  };
   return (
     <>
-      <ProfileSidebar />
-      <section className="md:pl-44 lg:pl-52 bg-[#0A0C10] w-full h-full min-h-screen text-white">
-        <div className="p-5 pt-7 md:p-12">
-          <div className="flex justify-between xl:justify-center gap-x-0 xl:gap-x-48 items-end">
-            <p className="text-3xl lg:text-5xl font-extrabold">
-              Welcome, User <span className="text-4xl lg:text-6xl">👋</span>
-            </p>
-            <div className="flex gap-x-5">
-              <Link to="">
-                <img src={facebook} alt="" className="w-6 lg:w-10" />
-              </Link>
-              <Link to="">
-                <img src={twitter} alt="" className="w-6 lg:w-10" />
-              </Link>
-              <Link to="">
-                <img src={instagram} alt="" className="w-6 lg:w-10" />
-              </Link>
-              <Link to="">
-                <img src={linkdin} alt="" className="w-6 lg:w-10" />
-              </Link>
-            </div>
-          </div>
-          <UserinfoHeader />
-          <UserinfoEditPanel />
-        </div>
-      </section>
+      <ProfileSidebar selectPage={selectPage} />
+      {path == "userinfo" ? <UserInfo /> : <div className="none"></div>}
+      {path == "audithistory" ? (
+        <AuditHistory hitoryValues={hitoryValues} />
+      ) : (
+        <div className="none"></div>
+      )}
     </>
   );
 }

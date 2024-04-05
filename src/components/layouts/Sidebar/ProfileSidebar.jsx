@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logo, user, config, history1, home, close, menu } from "@/assets";
+import { Button } from "@mui/material";
 
-const ProfileSidebar = () => {
+const ProfileSidebar = (props) => {
+  const { selectPage } = props;
   const [toggle, setToggle] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -16,6 +18,10 @@ const ProfileSidebar = () => {
   // Function to handle scroll
   const handleScroll = () => {
     setToggle(false);
+  };
+
+  const selectPageButtonClick = (path) => {
+    selectPage(path);
   };
 
   // Add event listeners on mount to handle clicks and scrolls outside of sidebar
@@ -44,16 +50,24 @@ const ProfileSidebar = () => {
               <img src={home} alt="" className="w-12 m-auto" />
             </div>
           </Link>
-          <Link to="/profile/" className="mt-4">
+          <button
+            onClick={() => {
+              selectPageButtonClick("userinfo");
+            }}
+          >
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={user} alt="" className="w-12 m-auto" />
             </div>
-          </Link>
-          <Link to="/profile/history" className="mt-4">
+          </button>
+          <button
+            onClick={() => {
+              selectPageButtonClick("audithistory");
+            }}
+          >
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={history1} alt="" className="w-12 m-auto" />
             </div>
-          </Link>
+          </button>
           <Link to="#" className="mt-4">
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={config} alt="" className="w-12 m-auto" />
@@ -94,16 +108,24 @@ const ProfileSidebar = () => {
                   <img src={home} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
-              <Link to="/profile/" className="mt-4">
-                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+              <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                <button
+                  onClick={() => {
+                    selectPageButtonClick("userinfo");
+                  }}
+                >
                   <img src={user} alt="" className="w-8 ss:w-12 m-auto" />
-                </div>
-              </Link>
-              <Link to="/profile/history" className="mt-4">
-                <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                </button>
+              </div>
+              <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
+                <button
+                  onClick={() => {
+                    selectPageButtonClick("audithistory");
+                  }}
+                >
                   <img src={history1} alt="" className="w-8 ss:w-12 m-auto" />
-                </div>
-              </Link>
+                </button>
+              </div>
               <Link to="/" className="mt-4">
                 <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
                   <img src={config} alt="" className="w-8 ss:w-12 m-auto" />
