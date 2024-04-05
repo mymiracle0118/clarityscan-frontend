@@ -23,11 +23,17 @@ import close from "@/assets/images/common/close.svg"
 import STX from "@/assets/images/common/STX.png"
 import BTC from "@/assets/images/common/BTC.svg"
 import NFT from "@/assets/images/common/NFT.png"
+import facebook from "@/assets/images/common/facebook.svg"
+import twitter from "@/assets/images/common/twitter.png"
+import instagram from "@/assets/images/common/instagram.svg"
+import linkdin from "@/assets/images/common/linkdin.png"
 
 //Profile
 import history from "@/assets/images/profile/history.png"
 import history1 from "@/assets/images/profile/history(white).svg"
 import config from "@/assets/images/profile/config.svg"
+import headerbackground from "@/assets/images/profile/headerbackground.jpg"
+
 
 // Icon
 import upgrade from "@/assets/icons/upgrade.svg"
@@ -61,9 +67,14 @@ export {
   STX,
   BTC,
   NFT,
+  linkdin,
+  facebook,
+  twitter,
+  instagram,
 
   //profile
   history,
   history1,
   config,
+  headerbackground,
 };

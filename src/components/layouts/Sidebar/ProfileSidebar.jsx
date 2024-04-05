@@ -30,7 +30,7 @@ const ProfileSidebar = () => {
 
   return (
     <>
-      <div className="hidden md:flex flex-col fixed justify-between items-center h-full md:w-44 lg:w-52 bg-[#1D1E29]">
+      <div className="hidden md:flex flex-col fixed justify-between items-center h-full md:w-44 lg:w-52 bg-[#1D1E29] border-r-4 rounded-e-3xl border-white">
         <Link to="#" className="mt-3">
           <img
             src={user}
@@ -44,12 +44,12 @@ const ProfileSidebar = () => {
               <img src={home} alt="" className="w-12 m-auto" />
             </div>
           </Link>
-          <Link to="#" className="mt-4">
+          <Link to="/profile/" className="mt-4">
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={user} alt="" className="w-12 m-auto" />
             </div>
           </Link>
-          <Link to="#" className="mt-4">
+          <Link to="/profile/history" className="mt-4">
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={history1} alt="" className="w-12 m-auto" />
             </div>
@@ -94,12 +94,12 @@ const ProfileSidebar = () => {
                   <img src={home} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
-              <Link to="/" className="mt-4">
+              <Link to="/profile/" className="mt-4">
                 <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
                   <img src={user} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
-              <Link to="/" className="mt-4">
+              <Link to="/profile/history" className="mt-4">
                 <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
                   <img src={history1} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>

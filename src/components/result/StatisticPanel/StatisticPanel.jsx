@@ -27,14 +27,14 @@ const StatisticPanel = () => {
       <div className="bg-white px-2 ss:md-4 py-6 rounded-[40px] mb-6">
         <div className="flex justify-between gap-x-2 md:gap-x-6 text-white mb-6">
           <div className="radialbg flex justify-center items-center gap-x-2 md:gap-x-4 px-3 md:px-4 2xl:px-8 h-16 py-1 rounded-full w-1/2">
-            <img src={lightning} alt="" className="w-3 md:w-4 2xl:w-6" />
+            <img src={lightning} alt="" className="w-3 md:w-3 2xl:w-6" />
             <div>
               <p className="text-xs ss:text-sm 2xl:text-xl">Scan Duration</p>
               <p className="text-center text-sm ss:text-md 2xl:text-2xl font-bold">2 Secs</p>
             </div>
           </div>
           <div className="radialbg flex justify-center items-center gap-x-2 md:gap-x-4 px-3 md:px-4 2xl:px-8 h-16 py-1 rounded-full w-1/2">
-            <img src={code} alt="" className="w-5 md:w-6 2xl:w-11" />
+            <img src={code} alt="" className="w-5 md:w-5 2xl:w-11" />
             <div>
               <p className="text-xs ss:text-sm 2xl:text-xl">Lines of Code</p>
               <p className="text-center text-sm ss:text-md 2xl:text-2xl font-bold">4000</p>

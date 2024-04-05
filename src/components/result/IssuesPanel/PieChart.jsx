@@ -33,12 +33,12 @@ const PieChart = ({ data }) => {
   }
 `;
   return (
-    <>
+    <div className="order-2 sm:order-1">
       <style>{cssStyles}</style>{" "}
       <div style={{ display: "contents" }} >
         <CanvasJSChart options={options} />
       </div>
-    </>
+    </div>
   );
 };
 
