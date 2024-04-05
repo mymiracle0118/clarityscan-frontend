@@ -152,7 +152,7 @@ export default function AuditHistory() {
   };
 
   return (
-    <div>
+    <>
       <ProfileSidebar />
       <section className="md:pl-44 lg:pl-52 bg-[#0A0C10] w-full h-full min-h-screen text-white">
         <div className="p-4 md:p-6">
@@ -167,6 +167,6 @@ export default function AuditHistory() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -23,14 +23,14 @@ const IssuesPanel = () => {
   return (
     <div className=" border-white border-4 rounded-[40px] px-2 py-6 2xl:px-7 xl:pl-10 2xl:pl-20 text-white bg-[#0A081D] xl:w-3/5 md:w-full">
       <div className="sm:flex justify-between md:gap-x-4 xl:gap-x-12" >
-        <div className="w-full lg:w-[600px]">
+        <div className="w-full lg:w-[600px] flex flex-col">
           <PieChart data={chartValues} />
-          <div className="mt-6 lg:pl-6 xl:pl-0">
+          <div className="mt-6 lg:pl-6 xl:pl-0 order-1 sm:order-2">
             <div className="flex items-center justify-center md:justify-normal">
               <span className="text-6xl font-bold">{issueCount}</span>
               <span className="ml-5 text-xl">Total Vulnerabilities found</span>
             </div>
-            <div className="flex-1 mt-10 flex justify-center md:justify-normal mb-5 sm:mb-0">
+            <div className="flex-1 mt-10 hidden sm:flex justify-center md:justify-normal mb-5 sm:mb-0">
               <ViewAuditReportButton handleClick={onclick} />
             </div>
           </div>
@@ -42,6 +42,9 @@ const IssuesPanel = () => {
             </div>
           ))}
         </div>
+        <div className="flex-1 mt-10 sm:hidden flex justify-center md:justify-normal mb-5 sm:mb-0">
+              <ViewAuditReportButton handleClick={onclick} />
+            </div>
       </div>
     </div>
   );

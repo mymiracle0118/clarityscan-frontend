@@ -5,6 +5,7 @@ import SigninPage from "@/pages/Signin"
 import SignupPage  from "@/pages/Signup"
 import ResultPage  from "@/pages/Result"
 import AuditHistory  from "@/pages/profile/AuditHistory"
+import Profile from "@/pages/Profile"
 
 export const AppRouter = () => {
     return (
@@ -14,7 +15,8 @@ export const AppRouter = () => {
                 <Route path="/signin" element={<SigninPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/result" element={<ResultPage />} />
-                <Route path="/profile" element={<AuditHistory />} />
+                <Route path="/profile/" element={<Profile />} />
+                <Route path="/profile/history" element={<AuditHistory />} />
             </Routes>
         </BrowserRouter>
 

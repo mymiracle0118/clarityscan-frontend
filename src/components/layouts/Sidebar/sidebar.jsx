@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { navLinks } from "@/constants";
 import { logo, user, upgrade, home, close, menu } from "@/assets";
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
+  const sidebarRef = useRef(null);
+
+  // Function to handle click outside of sidebar
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
+
+  // Function to handle scroll
+  const handleScroll = () => {
+    setToggle(false);
+  };
+
+  // Add event listeners on mount to handle clicks and scrolls outside of sidebar
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -33,14 +56,18 @@ const Sidebar = () => {
           src={toggle ? close : menu}
           alt="menu"
           className="w-[28px] h-[28px] object-contain mt-1 ml-1"
-          onClick={() => setToggle((previous) => !previous)}
+          onClick={(event) => {
+            event.stopPropagation(); // Stop event propagation
+            setToggle((previous) => !previous);
+          }}
         />
         <div
+          ref={sidebarRef}
           className={`${
             toggle ? "flex" : "hidden"
-          } p-6 bg-black-gradient absolute top-5 left-0 mx-4 my-2 z-20 min-w-[140px] rounded-xl sidebar`}
+          } p-6 bg-[rgb(30,28,114)] absolute top-0 left-0 z-20 min-w-[140px] rounded-r-xl h-screen sidebar`}
         >
-          <ul className="list-none flex flex-col justify-end items-center flex-1">
+          <ul className="list-none flex flex-col justify-between items-center flex-1">
             <Link to="/" className="mt-2">
               <img src={logo} alt="" className="w-20" />
             </Link>
