@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import UserAvatarCard from "./UserAvatarCard";
 
-export default function UserinfoEditPanel() {
+export default function UserinfoEditPanel(props) {
+  const { selectedAvatar } = props;
   const [editMode, setEditMode] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -47,7 +48,7 @@ export default function UserinfoEditPanel() {
 
   return (
     <div className="block xl:flex justify-between items-center px-4 md:px-8 py-6 md:py-10 profile-radialbg rounded-[5rem] max-w-[1500px] m-auto">
-      <UserAvatarCard />
+      <UserAvatarCard selectedAvatar={selectedAvatar} />
       <div className="flex flex-col gap-y-4">
         <button
           onClick={() => setEditMode(!editMode)}
@@ -106,7 +107,9 @@ export default function UserinfoEditPanel() {
             </button>
           </div>
           <div className="flex justify-start gap-x-4 w-full">
-            <p className="text-lg lg:text-2xl font-bold mt-3 w-[130px] text-right">Email:</p>
+            <p className="text-lg lg:text-2xl font-bold mt-3 w-[130px] text-right">
+              Email:
+            </p>
             <div className="flex flex-col gap-y-4 w-full">
               <input
                 type="email"
@@ -138,7 +141,9 @@ export default function UserinfoEditPanel() {
             </div>
           </div>
           <div className="flex justify-start gap-x-4 w-full">
-            <p className="text-lg lg:text-2xl font-bold mt-3 w-[130px] text-right">Password:</p>
+            <p className="text-lg lg:text-2xl font-bold mt-3 w-[130px] text-right">
+              Password:
+            </p>
             <div className="flex flex-col gap-y-4 w-full">
               <div className="relative">
                 <input

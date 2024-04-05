@@ -2,7 +2,8 @@ import { useState, useRef } from "react";
 import { user } from "@/assets/";
 import EditIcon from "@mui/icons-material/Edit";
 
-export default function UserAvatarCard() {
+export default function UserAvatarCard(props) {
+  const { selectedAvatar } = props;
   const [userImage, setUserImage] = useState(user); // Initial user image
   const fileInputRef = useRef(null);
 
@@ -12,6 +13,7 @@ export default function UserAvatarCard() {
       const reader = new FileReader();
       reader.onloadend = () => {
         // Update user image state with the selected image
+        // selectedAvatar(reader.result);
         setUserImage(reader.result);
       };
       reader.readAsDataURL(file);
@@ -29,7 +31,7 @@ export default function UserAvatarCard() {
           <img
             src={userImage}
             alt=""
-            className="w-64 h-64 rounded-full cursor-pointe border-8 border-[#52525f] opacity-75 m-auto block object-cover"
+            className="w-52 ss:w-64 h-52 ss:h-64 rounded-full cursor-pointer border-8 border-[#52525f] opacity-75 m-auto block object-cover"
           />
         </label>
         <input
@@ -49,7 +51,10 @@ export default function UserAvatarCard() {
       </div>
       <p className="text-center pt-3">@kilian</p>
       <button
-        onClick={handleOpenFileInput}
+        onClick={() => {
+          // console.log(userImage);
+          selectedAvatar(userImage);
+        }}
         className="mt-6 mb-6 mx-auto block p-4 bg-gradient-to-r from-[#2C2C31] to-[#51516F] rounded-full"
       >
         Change Photo

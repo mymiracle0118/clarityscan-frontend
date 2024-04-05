@@ -4,7 +4,7 @@ import ProfileSidebar from "@/components/layouts/Sidebar/ProfileSidebar";
 import UserInfo from "./profile/UserInfo";
 import AuditHistory from "./profile/AuditHistory";
 
-import { BTC, STX, NFT } from "@/assets";
+import { BTC, STX, NFT, user } from "@/assets";
 import { useState } from "react";
 
 const hitoryValues = [
@@ -140,14 +140,22 @@ const hitoryValues = [
 
 export default function Profile() {
   const [path, selectPath] = useState("userinfo");
+  const [imgPath, setImagPath] = useState(user);
   const selectPage = (path) => {
     console.log(path);
     selectPath(path);
   };
+  const selectedAvatar = (imgPath) => {
+    setImagPath(imgPath);
+  };
   return (
     <>
-      <ProfileSidebar selectPage={selectPage} />
-      {path == "userinfo" ? <UserInfo /> : <div className="none"></div>}
+      <ProfileSidebar selectPage={selectPage} imgPath={imgPath} />
+      {path == "userinfo" ? (
+        <UserInfo selectedAvatar={selectedAvatar} />
+      ) : (
+        <div className="none"></div>
+      )}
       {path == "audithistory" ? (
         <AuditHistory hitoryValues={hitoryValues} />
       ) : (

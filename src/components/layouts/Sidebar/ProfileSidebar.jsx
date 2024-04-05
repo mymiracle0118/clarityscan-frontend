@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logo, user, config, history1, home, close, menu } from "@/assets";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 
 const ProfileSidebar = (props) => {
-  const { selectPage } = props;
+  const { selectPage, imgPath } = props;
   const [toggle, setToggle] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -39,9 +39,9 @@ const ProfileSidebar = (props) => {
       <div className="hidden md:flex flex-col fixed justify-between items-center h-full md:w-44 lg:w-52 bg-[#1D1E29] border-r-4 rounded-e-3xl border-white">
         <Link to="#" className="mt-3">
           <img
-            src={user}
+            src={imgPath}
             alt=""
-            className="md:w-32 lg:w-40 border-[6px] border-[#494967] rounded-full"
+            className="md:w-32 lg:w-40 md:h-32 lg:h-40 border-[6px] border-[#494967] rounded-full object-cover"
           />
         </Link>
         <div>
@@ -97,9 +97,9 @@ const ProfileSidebar = (props) => {
           <ul className="list-none flex flex-col justify-between items-center gap-y-3 flex-1">
             <Link to="/" className="mt-3">
               <img
-                src={user}
+                src={imgPath}
                 alt=""
-                className="md:w-32 lg:w-40 border-[6px] border-[#494967] rounded-full"
+                className="w-24 lg:w-40 h-24 lg:h-40 border-[6px] border-[#494967] rounded-full object-cover"
               />
             </Link>
             <div>
