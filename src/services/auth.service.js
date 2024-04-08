@@ -11,22 +11,25 @@ export class AuthService {
     });
   }
 
-  login = (email, password) => {
-    return this.instance
-      .post("/login", {
-        emailAddress: email,
-        password: password,
-      })
-      .then((res) => {
-        // return {
-        //   username: res.data.username,
-        //   avatar: res.data.avatar,
-        //   id: res.data.userId,
-        //   accessToken: res.data.access_token,
-        //   expiredAt: res.data.expiredAt,
-        // };
-        return res.data;
-      });
+  login = async (email, password) => {
+    if(email == "test@test.com" && password == "test1234") {
+      return {
+        status: true,
+        data: null
+      }
+    } else {
+      return {
+        status: false,
+        data: null
+      }
+    }
+    
+    // const res = await this.instance
+    //   .post("/login", {
+    //     emailAddress: email,
+    //     password: password,
+    //   });
+    // return res;
   };
 
   signup = (userName, companyName, emailAddress, password) => {

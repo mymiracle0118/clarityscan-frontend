@@ -1,12 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import './index.css'
+import "./index.css";
 
-import {AppRouter} from "@/router/AppRouter"
+import { AppRouter } from "@/router/AppRouter";
+import { CookiesProvider } from "react-cookie";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AppRouter />
-  </React.StrictMode>,
-)
+    <CookiesProvider>
+      <AppRouter />
+    </CookiesProvider>
+  </React.StrictMode>
+);

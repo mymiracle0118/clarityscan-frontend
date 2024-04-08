@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { STX, lightning, code, shield } from "@/assets";
 import LaunchOutlinedIcon from "@mui/icons-material/LaunchOutlined";
 import HalfCircle from "./HalfCircle";
-import { Box } from "@mui/material";
 
 const StatisticPanel = () => {
   return (

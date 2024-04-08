@@ -100,8 +100,8 @@ export default function UserinfoEditPanel(props) {
             <button
               onClick={handleConfirmName}
               disabled={!editMode}
-              style={{ opacity: editMode ? "1" : "0.5" }}
-              className="text-sm underline ml-[99px] lg:ml-[130px] mr-auto block py-3 px-6 bg-gradient-to-r from-[#2C2C31] to-[#51516F] rounded-full"
+              style={{ opacity: editMode ? "1" : "0.5", background: editMode ? "radial-gradient(#456b8d, #283e5c)" : "linear-gradient(to right, #2C2C31, #51516F)"}}
+              className="text-sm underline ml-[99px] lg:ml-[130px] mr-auto block py-3 px-6 bg-gradient-to-r from-[#2C2C31] to-[#3e3e5f] rounded-full"
             >
               Confirm
             </button>
@@ -132,7 +132,7 @@ export default function UserinfoEditPanel(props) {
               <button
                 onClick={handleConfirmEmail}
                 disabled={!editMode}
-                style={{ opacity: editMode ? "1" : "0.5" }}
+                style={{ opacity: editMode ? "1" : "0.5", background: editMode ? "radial-gradient(#456b8d, #283e5c)" : "linear-gradient(to right, #2C2C31, #51516F)"}}
                 className="text-sm underline mr-auto block py-3 px-6 bg-gradient-to-r from-[#2C2C31] to-[#51516F] rounded-full"
               >
                 Confirm
@@ -184,7 +184,7 @@ export default function UserinfoEditPanel(props) {
               <button
                 onClick={handleConfirmPassword}
                 disabled={!editMode}
-                style={{ opacity: editMode ? "1" : "0.5" }}
+                style={{ opacity: editMode ? "1" : "0.5", background: editMode ? "radial-gradient(#456b8d, #283e5c)" : "linear-gradient(to right, #2C2C31, #51516F)"}}
                 className="text-sm underline mr-auto block py-3 px-6 bg-gradient-to-r from-[#2C2C31] to-[#51516F] rounded-full"
               >
                 Confirm

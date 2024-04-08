@@ -1,53 +1,71 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layouts/Header/Navbar";
 import "@/assets/sass/globals.scss";
-import { useSignup } from "@/hooks/auth/useSignup";
 import { cross } from "@/assets/"; // Import your other assets here
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { authService } from "@/services";
+import { useCookies } from "react-cookie";
 
 export default function Singin() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to track password visibility
   const [errors, setErrors] = useState({}); // State to track input errors
   const [agreed, setAgreed] = useState(false); // State to track checkbox status
   const [passwordFocused, setPasswordFocused] = useState(false); // State to track password input focus
-  const { signup } = useSignup();
-  // const navigate = Navigate();
+  const [cookies, setCookie] = useCookies(["user"]);
 
+  // const navigate = Navigate();
   const validateInputs = () => {
     const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for basic email validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Regex for password validation (at least 8 characters with letters and numbers)
+
     if (!email) {
       errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email format";
     }
     if (!password) {
       errors.password = "Password is required";
+    } else if (!passwordRegex.test(password)) {
+      errors.password =
+        "Password must contain at least 8 characters with letters and numbers";
     }
     setErrors(errors);
     return Object.keys(errors).length === 0 && agreed; // Return true if no errors and checkbox is checked
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const isValid = validateInputs();
+    let result;
     if (isValid) {
-      signup(firstname, lastname, email, password)
-        .then((res) => {
-          // navigate("/signin");
-        })
-        .catch((err) => console.log(err));
+      // signup(firstname, lastname, email, password)
+      //   .then((res) => {
+      result = await authService.login(email, password);
+      if (result.status) {
+        setCookie("user", { status: true, data: "test" });
+        navigate("/profile");
+      } else {
+          setErrors({ email: "", password: "User does not exist or incorrect password" });
+        // })
+        // .catch((err) => console.log(err));
+      }
     }
   };
 
   return (
-    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.jpeg')] relative min-h-screen">
+    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.webp')] relative min-h-screen">
       <Navbar />
       <Link to="/" className="absolute right-10 mt-10 sm:mt-0">
         <img src={cross} alt="" className="w-8 xs:w-10" />
       </Link>
       <div className="px-3 py-6 xs:p-6">
-        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-6 xs:p-10 bg-[#04091E] m-auto lg:absolute right-1/4 top-[23%]">
+        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-6 xs:p-10 bg-[#04091E] m-auto lg:absolute right-1/4">
           <div className="text-center text-3xl xs:text-4xl font-bold px-2 ss:px-0">
             Sign in for an account
           </div>
@@ -69,7 +87,7 @@ export default function Singin() {
               type="email"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email}</p>
+              <p className="text-red-500 text-xs pl-3">{errors.email}</p>
             )}
             <div className="relative">
               <input
@@ -92,7 +110,7 @@ export default function Singin() {
               </button>
             </div>
             {errors.password && (
-              <p className="text-red-500 text-xs">{errors.password}</p>
+              <p className="text-red-500 text-xs pl-3">{errors.password}</p>
             )}
             <div className="flex gap-x-3 items-center justify-center">
               <input

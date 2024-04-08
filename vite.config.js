@@ -19,6 +19,10 @@ export default defineConfig({
      "@": __dirname + "/src",
     }
   },
+  optimizeDependencies: {
+    include: [],
+    exclude: ['react-cookie'],
+  },
   build: {
     commonjsOptions: { transformMixedEsModules: true }, // Change
     chunkSizeWarningLimit: 800, // Set the limit to 800kb

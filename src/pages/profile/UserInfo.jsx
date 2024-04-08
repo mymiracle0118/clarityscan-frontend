@@ -14,7 +14,7 @@ export default function UserInfo(props) {
             <p className="text-3xl lg:text-5xl font-extrabold">
               Welcome, User <span className="text-4xl lg:text-6xl">👋</span>
             </p>
-            <div className="flex gap-x-5">
+            {/* <div className="flex gap-x-5">
               <Link to="">
                 <img src={facebook} alt="" className="w-6 lg:w-10" />
               </Link>
@@ -27,7 +27,7 @@ export default function UserInfo(props) {
               <Link to="">
                 <img src={linkdin} alt="" className="w-6 lg:w-10" />
               </Link>
-            </div>
+            </div> */}
           </div>
           <UserinfoHeader />
           <UserinfoEditPanel selectedAvatar={selectedAvatar} />

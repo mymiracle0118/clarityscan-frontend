@@ -10,8 +10,10 @@ export default function Singup() {
   const [email, setEmail] = useState("");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -19,6 +21,9 @@ export default function Singup() {
 
   const validateInputs = () => {
     const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for basic email validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Regex for password validation (at least 8 characters with letters and numbers)
+
     if (!firstname) {
       errors.firstname = "First name is required";
     }
@@ -27,9 +32,19 @@ export default function Singup() {
     }
     if (!email) {
       errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email format";
     }
-    if (!password) {
-      errors.password = "Password is required";
+    if (!newPassword) {
+      errors.newPassword = "Password is required";
+    } else if (!passwordRegex.test(newPassword)) {
+      errors.newPassword =
+        "Password must contain at least 8 characters with letters and numbers";
+    }
+    if (!confirmPassword) {
+      errors.confirmPassword = "Confirm password is required";
+    } else if (newPassword !== confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
     }
     setErrors(errors);
     return Object.keys(errors).length === 0 && agreed;
@@ -38,24 +53,22 @@ export default function Singup() {
   const onSubmit = () => {
     const isValid = validateInputs();
     if (isValid) {
-      signup(firstname, lastname, email, password)
+      signup(firstname, lastname, email, newPassword, confirmPassword)
         .then((res) => {
           // navigate("/signin");
         })
         .catch((err) => console.log(err));
-    } else {
-      alert("Please fill in all required fields and agree to the terms.");
     }
   };
 
   return (
-    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.jpeg')] relative min-h-screen">
+    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.webp')] relative min-h-screen h-full">
       <Navbar />
       <Link to="/" className="absolute right-10 mt-10 sm:mt-0">
         <img src={cross} alt="" className="w-8 xs:w-10" />
       </Link>
       <div className="px-3 py-6 xs:p-6">
-        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-10 bg-[#04091E] m-auto lg:absolute right-1/4 top-[23%]">
+        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-10 bg-[#04091E] m-auto lg:absolute right-1/4">
           <div className="text-white max-w-[500px]">
             <div className="text-center text-3xl xs:text-4xl font-bold">
               Sign up for an account
@@ -69,31 +82,39 @@ export default function Singup() {
               noValidate
             >
               <div className="flex gap-x-2">
-                <input
-                  value={firstname}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="First Name"
-                  className={`common-input w-1/2 my-4 focus:bg-white focus:text-black focus:caret-black ${
-                    errors.firstname ? "border-red-500" : ""
-                  }`}
-                  type="text"
-                />
-                <input
-                  value={lastname}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="Last Name"
-                  className={`common-input w-1/2 my-4 focus:bg-white focus:text-black focus:caret-black ${
-                    errors.lastname ? "border-red-500" : ""
-                  }`}
-                  type="text"
-                />
+                <div className="w-1/2">
+                  <input
+                    value={firstname}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First Name"
+                    className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
+                      errors.firstname ? "border-red-500" : ""
+                    }`}
+                    type="text"
+                  />
+                  {errors.firstname && (
+                    <p className="text-red-500 text-xs pl-3 w-full">
+                      {errors.firstname}
+                    </p>
+                  )}
+                </div>
+                <div className="w-1/2">
+                  <input
+                    value={lastname}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Last Name"
+                    className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
+                      errors.lastname ? "border-red-500" : ""
+                    }`}
+                    type="text"
+                  />
+                  {errors.lastname && (
+                    <p className="text-red-500 text-xs pl-3">
+                      {errors.lastname}
+                    </p>
+                  )}
+                </div>
               </div>
-              {errors.firstname && (
-                <p className="text-red-500 text-xs">{errors.firstname}</p>
-              )}
-              {errors.lastname && (
-                <p className="text-red-500 text-xs">{errors.lastname}</p>
-              )}
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -104,28 +125,55 @@ export default function Singup() {
                 type="email"
               />
               {errors.email && (
-                <p className="text-red-500 text-xs">{errors.email}</p>
+                <p className="text-red-500 text-xs pl-3">{errors.email}</p>
               )}
               <div className="relative">
                 <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Password"
                   className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
                     errors.password ? "border-red-500" : ""
                   }`}
-                  type={showPassword ? "text" : "password"}
+                  type={showNewPassword ? "text" : "password"}
+                />
+                {errors.newPassword && (
+                  <p className="text-red-500 text-xs pl-3">
+                    {errors.newPassword}
+                  </p>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setShowNewPassword(!showNewPassword)}
+                  className="absolute inset-y-0 right-0 flex items-center justify-center mr-2 text-gray-400"
+                >
+                  {showNewPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </button>
+              </div>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm Password"
+                  className={`common-input w-full my-4 focus:bg-white focus:text-black focus:caret-black ${
+                    errors.password ? "border-red-500" : ""
+                  }`}
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute inset-y-0 right-0 flex items-center justify-center mr-2 text-gray-400"
                 >
-                  {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                  {showConfirmPassword ? (
+                    <VisibilityOffIcon />
+                  ) : (
+                    <VisibilityIcon />
+                  )}
                 </button>
               </div>
-              {errors.password && (
-                <p className="text-red-500 text-xs">{errors.password}</p>
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-xs pl-3">{errors.confirmPassword}</p>
               )}
               <div className="flex gap-x-3 items-center justify-center">
                 <input
