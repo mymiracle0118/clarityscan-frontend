@@ -22,11 +22,19 @@ export default function Singin() {
   // const navigate = Navigate();
   const validateInputs = () => {
     const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for basic email validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Regex for password validation (at least 8 characters with letters and numbers)
+
     if (!email) {
       errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email format";
     }
     if (!password) {
       errors.password = "Password is required";
+    } else if (!passwordRegex.test(password)) {
+      errors.password =
+        "Password must contain at least 8 characters with letters and numbers";
     }
     setErrors(errors);
     return Object.keys(errors).length === 0 && agreed; // Return true if no errors and checkbox is checked
@@ -42,9 +50,11 @@ export default function Singin() {
       if (result.status) {
         setCookie("user", { status: true, data: "test" });
         navigate("/profile");
+      } else {
+          setErrors({ email: "", password: "User does not exist or incorrect password" });
+        // })
+        // .catch((err) => console.log(err));
       }
-      // })
-      // .catch((err) => console.log(err));
     }
   };
 

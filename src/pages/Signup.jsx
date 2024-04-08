@@ -21,6 +21,9 @@ export default function Singup() {
 
   const validateInputs = () => {
     const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for basic email validation
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Regex for password validation (at least 8 characters with letters and numbers)
+
     if (!firstname) {
       errors.firstname = "First name is required";
     }
@@ -29,15 +32,19 @@ export default function Singup() {
     }
     if (!email) {
       errors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      errors.email = "Invalid email format";
     }
     if (!newPassword) {
-      errors.password = "Password is required";
+      errors.newPassword = "Password is required";
+    } else if (!passwordRegex.test(newPassword)) {
+      errors.newPassword =
+        "Password must contain at least 8 characters with letters and numbers";
     }
     if (!confirmPassword) {
-      errors.password = "Password is required";
-    }
-    if (newPassword !== confirmPassword) {
-      errors.password = "Passwords do not match";
+      errors.confirmPassword = "Confirm password is required";
+    } else if (newPassword !== confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
     }
     setErrors(errors);
     return Object.keys(errors).length === 0 && agreed;
@@ -86,7 +93,9 @@ export default function Singup() {
                     type="text"
                   />
                   {errors.firstname && (
-                    <p className="text-red-500 text-xs pl-3 w-full">{errors.firstname}</p>
+                    <p className="text-red-500 text-xs pl-3 w-full">
+                      {errors.firstname}
+                    </p>
                   )}
                 </div>
                 <div className="w-1/2">
@@ -100,7 +109,9 @@ export default function Singup() {
                     type="text"
                   />
                   {errors.lastname && (
-                    <p className="text-red-500 text-xs pl-3">{errors.lastname}</p>
+                    <p className="text-red-500 text-xs pl-3">
+                      {errors.lastname}
+                    </p>
                   )}
                 </div>
               </div>
@@ -126,6 +137,11 @@ export default function Singup() {
                   }`}
                   type={showNewPassword ? "text" : "password"}
                 />
+                {errors.newPassword && (
+                  <p className="text-red-500 text-xs pl-3">
+                    {errors.newPassword}
+                  </p>
+                )}
                 <button
                   type="button"
                   onClick={() => setShowNewPassword(!showNewPassword)}
@@ -156,8 +172,8 @@ export default function Singup() {
                   )}
                 </button>
               </div>
-              {errors.password && (
-                <p className="text-red-500 text-xs pl-3">{errors.password}</p>
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-xs pl-3">{errors.confirmPassword}</p>
               )}
               <div className="flex gap-x-3 items-center justify-center">
                 <input

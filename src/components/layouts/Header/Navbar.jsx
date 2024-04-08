@@ -60,19 +60,20 @@ const Navbar = () => {
               Signup
             </Link>
           </div>
-          <div className="flex justify-start items-center lg:hidden absolute right-0">
-            <img
-              src={toggle ? close : menu}
-              alt="menu"
-              className="w-10 h-10 mr-4 object-contain z-30"
-              onClick={(event) => {
-                event.stopPropagation(); // Stop event propagation
-                setToggle((previous) => !previous);
-              }}
-            />
-          </div>
         </>
       )}
+      <div className="flex justify-start items-center lg:hidden absolute right-0">
+        <img
+          src={toggle ? close : menu}
+          alt="menu"
+          className="w-10 h-10 mr-4 object-contain z-30"
+          onClick={(event) => {
+            event.stopPropagation(); // Stop event propagation
+            setToggle((previous) => !previous);
+          }}
+        />
+      </div>
+
       <div
         ref={sidebarRef}
         className={`${

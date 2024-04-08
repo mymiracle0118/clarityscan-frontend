@@ -12,7 +12,7 @@ export class AuthService {
   }
 
   login = async (email, password) => {
-    if(email == "test@gmail.com") {
+    if(email == "test@test.com" && password == "test1234") {
       return {
         status: true,
         data: null
