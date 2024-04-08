@@ -41,13 +41,13 @@ export default function Singin() {
   };
 
   return (
-    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.jpeg')] relative min-h-screen">
+    <div className="signup bg-[url('/src/assets/images/auth/bg_welcome.webp')] relative min-h-screen">
       <Navbar />
       <Link to="/" className="absolute right-10 mt-10 sm:mt-0">
         <img src={cross} alt="" className="w-8 xs:w-10" />
       </Link>
       <div className="px-3 py-6 xs:p-6">
-        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-6 xs:p-10 bg-[#04091E] m-auto lg:absolute right-1/4 top-[23%]">
+        <div className="text-white max-w-[500px] border-2 border-teal-400 rounded-xl p-6 xs:p-10 bg-[#04091E] m-auto lg:absolute right-1/4">
           <div className="text-center text-3xl xs:text-4xl font-bold px-2 ss:px-0">
             Sign in for an account
           </div>
@@ -69,7 +69,7 @@ export default function Singin() {
               type="email"
             />
             {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email}</p>
+              <p className="text-red-500 text-xs pl-3">{errors.email}</p>
             )}
             <div className="relative">
               <input
@@ -92,7 +92,7 @@ export default function Singin() {
               </button>
             </div>
             {errors.password && (
-              <p className="text-red-500 text-xs">{errors.password}</p>
+              <p className="text-red-500 text-xs pl-3">{errors.password}</p>
             )}
             <div className="flex gap-x-3 items-center justify-center">
               <input

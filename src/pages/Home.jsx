@@ -6,7 +6,7 @@ import styles from '@/constants/style'
 
 const App = () => {
   return (
-    <div className='w-full h-full overflow-hidden bg-[url(/src/assets/images/auth/bg_welcome.jpeg)]'>
+    <div className='w-full h-full overflow-hidden bg-[url(/src/assets/images/auth/bg_welcome.webp)]'>
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
           <Navbar/>

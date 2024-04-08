@@ -1,7 +1,4 @@
-import { money, lightning, code, shield } from "@/assets";
-import { Link } from "react-router-dom";
 import CanvasJSReact from "@canvasjs/react-charts";
-import ChartStateCard from "./ChartStateCard";
 import ChartStateCircleCard from "./ChartStateCard";
 import ViewAuditReportButton from "./ViewAuditReportButton";
 import PieChart from "./PieChart";

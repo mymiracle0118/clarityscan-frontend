@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { logo, user, config, history1, home, close, menu } from "@/assets";
+import { logo, user, logout, history1, home, close, menu } from "@/assets";
 // import { Button } from "@mui/material";
 
 const ProfileSidebar = (props) => {
@@ -70,7 +70,7 @@ const ProfileSidebar = (props) => {
           </button>
           <Link to="#" className="mt-4">
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
-              <img src={config} alt="" className="w-12 m-auto" />
+              <img src={logout} alt="" className="w-12 m-auto" />
             </div>
           </Link>
         </div>
@@ -128,7 +128,7 @@ const ProfileSidebar = (props) => {
               </div>
               <Link to="/" className="mt-4">
                 <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
-                  <img src={config} alt="" className="w-8 ss:w-12 m-auto" />
+                  <img src={logout} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
               </Link>
             </div>
