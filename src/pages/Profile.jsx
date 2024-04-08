@@ -1,8 +1,11 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import ProfileSidebar from "@/components/layouts/Sidebar/ProfileSidebar";
 import UserInfo from "./profile/UserInfo";
 import AuditHistory from "./profile/AuditHistory";
+import { useCookies } from "react-cookie";
 
 import { BTC, STX, NFT, user } from "@/assets";
 import { useState } from "react";
@@ -139,6 +142,8 @@ const hitoryValues = [
 ];
 
 export default function Profile() {
+  const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["user"]);
   const [path, selectPath] = useState("userinfo");
   const [imgPath, setImagPath] = useState(user);
   const selectPage = (path) => {
@@ -148,9 +153,17 @@ export default function Profile() {
   const selectedAvatar = (imgPath) => {
     setImagPath(imgPath);
   };
+  const handleLogout = () => {
+    setCookie("user", { status: false, data: "test" });
+    navigate("/");
+  };
   return (
     <>
-      <ProfileSidebar selectPage={selectPage} imgPath={imgPath} />
+      <ProfileSidebar
+        selectPage={selectPage}
+        handleLogout={handleLogout}
+        imgPath={imgPath}
+      />
       {path == "userinfo" ? (
         <UserInfo selectedAvatar={selectedAvatar} />
       ) : (

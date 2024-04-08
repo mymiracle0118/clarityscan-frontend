@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/layouts/Header/Navbar";
 import "@/assets/sass/globals.scss";
-import { useSignup } from "@/hooks/auth/useSignup";
 import { cross } from "@/assets/"; // Import your other assets here
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { authService } from "@/services";
+import { useCookies } from "react-cookie";
 
 export default function Singin() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to track password visibility
   const [errors, setErrors] = useState({}); // State to track input errors
   const [agreed, setAgreed] = useState(false); // State to track checkbox status
   const [passwordFocused, setPasswordFocused] = useState(false); // State to track password input focus
-  const { signup } = useSignup();
-  // const navigate = Navigate();
+  const [cookies, setCookie] = useCookies(["user"]);
 
+  // const navigate = Navigate();
   const validateInputs = () => {
     const errors = {};
     if (!email) {
@@ -29,14 +32,19 @@ export default function Singin() {
     return Object.keys(errors).length === 0 && agreed; // Return true if no errors and checkbox is checked
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const isValid = validateInputs();
+    let result;
     if (isValid) {
-      signup(firstname, lastname, email, password)
-        .then((res) => {
-          // navigate("/signin");
-        })
-        .catch((err) => console.log(err));
+      // signup(firstname, lastname, email, password)
+      //   .then((res) => {
+      result = await authService.login(email, password);
+      if (result.status) {
+        setCookie("user", { status: true, data: "test" });
+        navigate("/profile");
+      }
+      // })
+      // .catch((err) => console.log(err));
     }
   };
 

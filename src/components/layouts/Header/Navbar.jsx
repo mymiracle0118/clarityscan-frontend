@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import { navLinks } from "@/constants";
 import { logo, menu, close } from "@/assets";
 
+import { useCookies } from "react-cookie";
+
 const Navbar = () => {
+  const [cookies, setCookie] = useCookies(["user"]);
   const [toggle, setToggle] = useState(false);
   const sidebarRef = useRef(null);
 
   // Function to handle click outside of sidebar
   const handleClickOutside = (event) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-      setToggle(false);
-    }
+    // if (sidebarRef.current && !sidebarRef.currenct.contains(event.target)) {
+    //   setToggle(false);
+    // }
   };
 
   // Function to handle scroll
@@ -44,28 +47,32 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <div className="lg:flex hidden gap-x-2 columns-3">
-        <Link to="/signin" className="text-white text-xl  px-7 py-4">
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="text-white text-xl px-7 py-4 border-teal-300 rounded-full border"
-        >
-          Signup
-        </Link>
-      </div>
-      <div className="flex justify-start items-center lg:hidden absolute right-0">
-        <img
-          src={toggle ? close : menu}
-          alt="menu"
-          className="w-10 h-10 mr-4 object-contain z-30"
-          onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
-            setToggle((previous) => !previous);
-          }}
-        />
-      </div>
+      {!cookies.user?.status && (
+        <>
+          <div className="lg:flex hidden gap-x-2 columns-3">
+            <Link to="/signin" className="text-white text-xl  px-7 py-4">
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="text-white text-xl px-7 py-4 border-teal-300 rounded-full border"
+            >
+              Signup
+            </Link>
+          </div>
+          <div className="flex justify-start items-center lg:hidden absolute right-0">
+            <img
+              src={toggle ? close : menu}
+              alt="menu"
+              className="w-10 h-10 mr-4 object-contain z-30"
+              onClick={(event) => {
+                event.stopPropagation(); // Stop event propagation
+                setToggle((previous) => !previous);
+              }}
+            />
+          </div>
+        </>
+      )}
       <div
         ref={sidebarRef}
         className={`${
@@ -88,17 +95,21 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <div className="flex gap-x-2 mt-8">
-            <Link to="/signin" className="text-white text-xl  px-7 py-4">
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="text-white text-xl px-7 py-4 border-teal-300 rounded-full border"
-            >
-              Signup
-            </Link>
-          </div>
+          {!cookies.user?.status && (
+            <>
+              <div className="flex gap-x-2 mt-8">
+                <Link to="/signin" className="text-white text-xl  px-7 py-4">
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="text-white text-xl px-7 py-4 border-teal-300 rounded-full border"
+                >
+                  Signup
+                </Link>
+              </div>
+            </>
+          )}
         </ul>
       </div>
     </nav>

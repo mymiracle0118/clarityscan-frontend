@@ -4,7 +4,7 @@ import { logo, user, logout, history1, home, close, menu } from "@/assets";
 // import { Button } from "@mui/material";
 
 const ProfileSidebar = (props) => {
-  const { selectPage, imgPath } = props;
+  const { selectPage, imgPath, handleLogout } = props;
   const [toggle, setToggle] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -13,6 +13,10 @@ const ProfileSidebar = (props) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setToggle(false);
     }
+  };
+
+  const logOutBtnClick = () => {
+    handleLogout();
   };
 
   // Function to handle scroll
@@ -68,11 +72,11 @@ const ProfileSidebar = (props) => {
               <img src={history1} alt="" className="w-12 m-auto" />
             </div>
           </button>
-          <Link to="#" className="mt-4">
+          <button onClick={logOutBtnClick} className="mt-4">
             <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-5">
               <img src={logout} alt="" className="w-12 m-auto" />
             </div>
-          </Link>
+          </button>
         </div>
         <Link to="/" className="mb-10">
           <img src={logo} alt="" className="md:w-20 lg:w-24" />
@@ -126,11 +130,11 @@ const ProfileSidebar = (props) => {
                   <img src={history1} alt="" className="w-8 ss:w-12 m-auto" />
                 </button>
               </div>
-              <Link to="/" className="mt-4">
+              <button onClick={logOutBtnClick} className="mt-4">
                 <div className="hover:bg-[#41424D]  md:w-44 lg:w-52 py-1 mt-3 ss:mt-5">
                   <img src={logout} alt="" className="w-8 ss:w-12 m-auto" />
                 </div>
-              </Link>
+              </button>
             </div>
             <Link to="/" className="mb-2 ss:mb-10">
               <img src={logo} alt="" className="w-16 ss:w-20 lg:w-24" />
