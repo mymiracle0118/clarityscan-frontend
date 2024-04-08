@@ -6,7 +6,7 @@ import robot from "@/assets/images/home/robot.webp";
 //Result
 import lightning from "@/assets/images/result/lightning.svg"
 import code from "@/assets/images/result/code.svg"
-import premiumPanelbg from "@/assets/images/result/premiumPanelbg.webp"
+import premiumPanelbg from "@/assets/images/result/premiumpanelbg.webp"
 import shield from "@/assets/images/result/private.svg"
 import crown2 from "@/assets/images/result/crown2.svg"
 import codesample from "@/assets/images/result/codesample.png"
